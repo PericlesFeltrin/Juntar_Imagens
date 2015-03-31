@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  */
 public class Juntar {
    
-    public void juntaLinhaColuna(int linha) throws IOException{
+    public void juntaLinhaColuna(int linha, String imagem, String nova) throws IOException{
         int coluna = 0;
         
         //cria uma nova imagem, com altura, comprimento e cor
@@ -27,25 +27,25 @@ public class Juntar {
         
         while(coluna < 64){
             //Busca imagem
-            File path = new File("/Users/pericles/projetos/JuntaImg/src/juntaimg/imgs/"+coluna+"_"+linha+".jpg");
+            File path = new File(imagem+coluna+"_"+linha+".jpg");
             BufferedImage image = ImageIO.read(path);
             g.drawImage(image, 256*coluna, 0, null);     
             coluna++;
         }
         
         //Salva Imagem
-        ImageIO.write(imgLinha, "JPG", new File("/Users/pericles/projetos/JuntaImg/src/juntaimg/imgs/nova/linha"+linha+".JPG"));
+        ImageIO.write(imgLinha, "JPG", new File(nova+"linha"+linha+".JPG"));
 
     }
     
-    public void juntaLinha() throws IOException{
+    public void juntaLinha(String imagem, String nova) throws IOException{
         //cria uma nova imagem, com altura, comprimento e cor
         BufferedImage img = new BufferedImage(256*64, 256*64, BufferedImage.TYPE_USHORT_565_RGB);
         Graphics g = img.getGraphics();
         
         for(int i = 0; i < 64; ){
             //Busca imagem
-            File path = new File("/Users/pericles/projetos/JuntaImg/src/juntaimg/imgs/nova/linha"+i+".jpg");
+            File path = new File(nova+"linha"+i+".jpg");
             if(path.exists()){
                 BufferedImage image = ImageIO.read(path);
                 g.drawImage(image, 0, 256*i, null);
@@ -54,7 +54,7 @@ public class Juntar {
         }
         
         //Salva Imagem
-        ImageIO.write(img, "JPG", new File("/Users/pericles/projetos/JuntaImg/src/juntaimg/imgs/nova/img.JPG"));
+        ImageIO.write(img, "JPG", new File(nova+"img.JPG"));
 
     }
     
